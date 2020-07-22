@@ -6,7 +6,7 @@ class GaleriaLista extends React.Component {
   constructor(props){
       super(props);
 
-      this.state = { lista: [], erro: null, copiedName: false, copiedEmail: false, copiedTelephone: false };
+      this.state = { lista: [], erro: null, copiedLink: false, copiedName: false, copiedEmail: false, copiedTelephone: false };
 
       this.handleClick = this.handleClick.bind(this);
   }
@@ -38,12 +38,13 @@ class GaleriaLista extends React.Component {
     return  <div className="padding-10">
                 <h2 className="text-center">Contatos:</h2>
                 
-                <CopyToClipboard text="https://mrconstrucao.000webhostapp.com/" onCopy={() => this.setState({copiedName: true, copiedEmail: false, copiedTelephone: false})}>
+                <CopyToClipboard text="https://mrconstrucao.000webhostapp.com/" onCopy={() => this.setState({copiedLink: true,copiedName: false, copiedEmail: false, copiedTelephone: false})}>
                   <button className="btn btn-info">
                     <FaCopy />  Local do aplicativo 
                   </button>
                 </CopyToClipboard>
 
+                {this.state.copiedLink ? <p className="text-center text-yellow">Link copiado.</p> : null}
                 {this.state.copiedEmail ? <p className="text-center text-blue">Email copiado.</p> : null}
                 {this.state.copiedName ? <p className="text-center text-blue">Nome Copiado.</p> : null}
                 {this.state.copiedTelephone ? <p className="text-center text-blue">Telefone Copiado.</p> : null}
@@ -61,21 +62,21 @@ class GaleriaLista extends React.Component {
                             <br/>
                               
                             <aside className="bar container">
-                              <CopyToClipboard text={item["nomeContatos"]} onCopy={() => this.setState({copiedName: true, copiedEmail: false, copiedTelephone: false})}>
+                              <CopyToClipboard text={item["nomeContatos"]} onCopy={() => this.setState({copiedName: true, copiedEmail: false, copiedTelephone: false, copiedLink: false})}>
                                 <button className="btn btn-info">
                                   <FaUser /> 
                                   <span className="hide-on-mobile">  Copiar Nome </span>
                                 </button>
                               </CopyToClipboard>
                               
-                              <CopyToClipboard text={item["emailContatos"]} onCopy={() => this.setState({copiedName: false, copiedEmail: true, copiedTelephone: false})}>
+                              <CopyToClipboard text={item["emailContatos"]} onCopy={() => this.setState({copiedName: false, copiedEmail: true, copiedTelephone: false, copiedLink: false})}>
                                 <button className="btn btn-info">
                                   <FaEnvelope /> 
                                   <span className="hide-on-mobile">  Copiar Email </span>
                                 </button>
                               </CopyToClipboard>
                               
-                              <CopyToClipboard text={item["telefoneContatos"]} onCopy={() => this.setState({copiedName: false, copiedEmail: false, copiedTelephone: true})}>
+                              <CopyToClipboard text={item["telefoneContatos"]} onCopy={() => this.setState({copiedName: false, copiedEmail: false, copiedTelephone: true, copiedLink: false})}>
                                 <button className="btn btn-info">
                                   <FaPhone /> 
                                   <span className="hide-on-mobile"> Copiar Telefone</span>
