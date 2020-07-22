@@ -1,12 +1,12 @@
 import React from 'react';
-import { FaTrash, FaEnvelope, FaPhone, FaUser, FaCopy } from 'react-icons/fa';
+import { FaTrash, FaEnvelope, FaPhone, FaUser, FaCopy, FaMap } from 'react-icons/fa';
 import { CopyToClipboard } from  'react-copy-to-clipboard';
 
 class GaleriaLista extends React.Component {
   constructor(props){
       super(props);
 
-      this.state = { lista: [], erro: null, copiedLink: false, copiedName: false, copiedEmail: false, copiedTelephone: false };
+      this.state = { lista: [], erro: null, copiedLink: false, copiedName: false, copiedEndereco: false, copiedEmail: false, copiedTelephone: false };
 
       this.handleClick = this.handleClick.bind(this);
   }
@@ -50,39 +50,56 @@ class GaleriaLista extends React.Component {
                 {this.state.copiedEmail ? <p className="text-center text-blue">Email copiado.</p> : null}
                 {this.state.copiedName ? <p className="text-center text-blue">Nome Copiado.</p> : null}
                 {this.state.copiedTelephone ? <p className="text-center text-blue">Telefone Copiado.</p> : null}
+                {this.state.copiedEndereco ? <p className="text-center text-blue">Endereço Copiado.</p> : null}
 
                 <br/>
                 {this.state.lista.map((item, id) => { 
                   return  <div className="card padding-16 margin-5 light-gray display-container">
-                            <h3 className="text-center">{item["nomeContatos"]}</h3>
+                            <h3 className="text-center">{item["nome"]}</h3>
                             <p className="text-justify text-indent">
-                              <b>Email: </b>{item["emailContatos"]}
+                              <b>Email: </b>{item["email"]}
                             </p>
                             <p className="text-justify text-indent">
-                              <b>Telefone: </b>{item["telefoneContatos"]}
+                              <b>Telefone: </b>{item["telefone"]}
+                            </p>
+                            <p className="text-justify text-indent">
+                              <b>Endereço:</b>
+                            </p>
+                            <p className="text-justify text-indent">
+                              <b>Estado: </b>{item["estado"]},
+                              <b>Cidade: </b>{item["cidade"]},
+                              <b>Rua/Avenida: </b>{item["rua"]},
+                              <b>Número: </b>{item["numero"]}
                             </p>
 
                             <br/>
                               
                             <aside className="bar container">
-                              <CopyToClipboard text={item["nomeContatos"]} onCopy={() => this.setState({copiedName: true, copiedEmail: false, copiedTelephone: false, copiedLink: false})}>
+                              <CopyToClipboard text={item["nome"]} onCopy={() => this.setState({copiedName: true, copiedEmail: false, copiedTelephone: false, copiedLink: false, copiedEndereco: false})}>
                                 <button className="btn btn-info">
                                   <FaUser /> 
                                   <span className="hide-on-mobile">  Copiar Nome </span>
                                 </button>
                               </CopyToClipboard>
                               
-                              <CopyToClipboard text={item["emailContatos"]} onCopy={() => this.setState({copiedName: false, copiedEmail: true, copiedTelephone: false, copiedLink: false})}>
+                              <CopyToClipboard text={item["email"]} onCopy={() => this.setState({copiedName: false, copiedEmail: true, copiedTelephone: false, copiedLink: false, copiedEndereco: false})}>
                                 <button className="btn btn-info">
                                   <FaEnvelope /> 
                                   <span className="hide-on-mobile">  Copiar Email </span>
                                 </button>
                               </CopyToClipboard>
                               
-                              <CopyToClipboard text={item["telefoneContatos"]} onCopy={() => this.setState({copiedName: false, copiedEmail: false, copiedTelephone: true, copiedLink: false})}>
+                              <CopyToClipboard text={item["telefone"]} onCopy={() => this.setState({copiedName: false, copiedEmail: false, copiedTelephone: true, copiedLink: false, copiedEndereco: false})}>
                                 <button className="btn btn-info">
                                   <FaPhone /> 
                                   <span className="hide-on-mobile"> Copiar Telefone</span>
+                                </button>
+                              </CopyToClipboard>
+
+                              <CopyToClipboard text={item["estado"]+","+item["cidade"]+","+item["rua"]+","+item["numero"]} onCopy={() => this.setState({copiedName: false, copiedEmail: false, copiedTelephone: false, copiedLink: false, copiedEndereco: true})}>
+                                <button className="btn btn-info">
+                                  <FaMap /> 
+                                  <span className="hide-on-mobile"> Copiar Endereço</span>
                                 </button>
                               </CopyToClipboard>
                             </aside>
