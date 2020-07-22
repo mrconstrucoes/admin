@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaTrash, FaEnvelope, FaPersonBooth, FaPhone, FaUser } from 'react-icons/fa';
+import { FaTrash, FaEnvelope, FaPhone, FaUser, FaCopy } from 'react-icons/fa';
 import { CopyToClipboard } from  'react-copy-to-clipboard';
 
 class GaleriaLista extends React.Component {
