@@ -46,11 +46,11 @@ class GaleriaLista extends React.Component {
                 </CopyToClipboard>
                 <br/>
 
-                {this.state.copiedLink ? <p className="text-center text-orange">Link copiado.</p> : null}
-                {this.state.copiedEmail ? <p className="text-center text-blue">Email copiado.</p> : null}
-                {this.state.copiedName ? <p className="text-center text-blue">Nome Copiado.</p> : null}
-                {this.state.copiedTelephone ? <p className="text-center text-blue">Telefone Copiado.</p> : null}
-                {this.state.copiedEndereco ? <p className="text-center text-blue">Endereço Copiado.</p> : null}
+                {this.state.copiedLink ? <h4 className="text-center text-orange">Link copiado.</h4> : null}
+                {this.state.copiedEmail ? <h4 className="text-center text-blue">Email copiado.</h4> : null}
+                {this.state.copiedName ? <h4 className="text-center text-blue">Nome Copiado.</h4> : null}
+                {this.state.copiedTelephone ? <h4 className="text-center text-blue">Telefone Copiado.</h4> : null}
+                {this.state.copiedEndereco ? <h4 className="text-center text-blue">Endereço Copiado.</h4> : null}
 
                 <br/>
                 {this.state.lista.map((item, id) => { 
@@ -109,7 +109,6 @@ class GaleriaLista extends React.Component {
                                 const requestOptions = {
                                   method: 'DELETE'
                                 };
-
                                 fetch("https://apimrconstrucoes.herokuapp.com/contatos/"+item["_id"], requestOptions)
                                   .then((response) => response.json())
                                   .then((data) => { alert("Apagado com sucesso!") });
