@@ -38,17 +38,20 @@ class GaleriaLista extends React.Component {
     return  <div className="padding-10">
                 <h2 className="text-center">Contatos:</h2>
                 
+                <br/>
                 <CopyToClipboard text="https://mrconstrucao.000webhostapp.com/" onCopy={() => this.setState({copiedLink: true,copiedName: false, copiedEmail: false, copiedTelephone: false})}>
-                  <button className="btn btn-info">
+                  <button className="btn btn-block btn-info">
                     <FaCopy />  Local do aplicativo 
                   </button>
                 </CopyToClipboard>
+                <br/>
 
                 {this.state.copiedLink ? <p className="text-center text-yellow">Link copiado.</p> : null}
                 {this.state.copiedEmail ? <p className="text-center text-blue">Email copiado.</p> : null}
                 {this.state.copiedName ? <p className="text-center text-blue">Nome Copiado.</p> : null}
                 {this.state.copiedTelephone ? <p className="text-center text-blue">Telefone Copiado.</p> : null}
 
+                <br/>
                 {this.state.lista.map((item, id) => { 
                   return  <div className="card padding-16 margin-5 light-gray display-container">
                             <h3 className="text-center">{item["nomeContatos"]}</h3>
